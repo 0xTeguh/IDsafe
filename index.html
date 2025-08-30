@@ -2,103 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Identity Vault PoC</title>
+  <title>IDSafe PoC</title>
   <style>
-    /* Reset & font */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #4b6cb7, #182848);
-      color: #fff;
+      background: #f5f6fa;
+      color: #2c3e50;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 50px 20px;
+      padding: 40px 20px;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: #34495e;
     }
 
     .card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
+      background: #ffffff;
       padding: 25px 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       margin-bottom: 30px;
       width: 100%;
       max-width: 500px;
-      transition: transform 0.3s;
+      transition: transform 0.2s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
 
     label {
       display: block;
-      margin: 15px 0 5px;
-      font-weight: bold;
-      color: #f0f0f0;
+      margin: 12px 0 5px;
+      font-weight: 600;
+      color: #2c3e50;
     }
 
     input {
       width: 100%;
       padding: 10px 15px;
-      border-radius: 8px;
-      border: none;
+      border-radius: 6px;
+      border: 1px solid #bdc3c7;
       font-size: 1em;
+      margin-bottom: 10px;
     }
 
     button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #2980b9;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 1em;
       cursor: pointer;
       color: #fff;
       font-weight: bold;
-      transition: 0.3s;
       width: 100%;
+      transition: 0.2s;
     }
 
     button:hover {
-      background: linear-gradient(90deg, #e52e71, #ff8a00);
-      transform: scale(1.05);
+      background: #1c5980;
     }
 
     pre {
-      background: rgba(255,255,255,0.1);
+      background: #ecf0f1;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 8px;
       overflow-x: auto;
       font-size: 0.95em;
-      color: #ffeb3b;
+      color: #2c3e50;
+      max-height: 200px;
     }
 
     .proof-title {
       margin-bottom: 10px;
-      font-size: 1.2em;
-      color: #ffd700;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #34495e;
     }
   </style>
 </head>
 <body>
 
-  <h1>Identity Vault PoC</h1>
+  <h1>IDSafe PoC</h1>
 
   <div class="card">
-    <h2>Enter Your Identity</h2>
-    <label for="name">Name</label>
+    <h2>User Identity Input</h2>
+    <label for="name">Full Name</label>
     <input type="text" id="name" placeholder="Alice Example">
-    <label for="email">Email</label>
+    <label for="email">Email Address</label>
     <input type="email" id="email" placeholder="alice@example.com">
     <button onclick="generateProof()">Generate Proof</button>
   </div>
@@ -119,9 +118,8 @@
       // Simple base64 as proof simulation
       const proof = btoa(JSON.stringify(identity));
 
-      document.getElementById('proofOutput').textContent = proof;
-
-      alert('✅ Proof generated successfully!');
+      document.getElementById('proofOutput').textContent = JSON.stringify(identity, null, 2) + "\n\nProof (base64):\n" + proof;
+      alert('✅ IDSafe proof generated successfully!');
     }
   </script>
 
