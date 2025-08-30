@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Identity Vault PoC</title>
+  <style>
+    /* Reset & font */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 500px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      color: #f0f0f0;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #e52e71, #ff8a00);
+      transform: scale(1.05);
+    }
+
+    pre {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.95em;
+      color: #ffeb3b;
+    }
+
+    .proof-title {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      color: #ffd700;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Identity Vault PoC</h1>
+
+  <div class="card">
+    <h2>Enter Your Identity</h2>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Alice Example">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="alice@example.com">
+    <button onclick="generateProof()">Generate Proof</button>
+  </div>
+
+  <div class="card">
+    <div class="proof-title">Proof Output</div>
+    <pre id="proofOutput">No proof generated yet.</pre>
+  </div>
+
+  <script>
+    function generateProof() {
+      const name = document.getElementById('name').value || 'Alice Example';
+      const email = document.getElementById('email').value || 'alice@example.com';
+      const createdAt = new Date().toLocaleString();
+
+      const identity = { name, email, createdAt };
+
+      // Simple base64 as proof simulation
+      const proof = btoa(JSON.stringify(identity));
+
+      document.getElementById('proofOutput').textContent = proof;
+
+      alert('✅ Proof generated successfully!');
+    }
+  </script>
+
+</body>
+</html>
